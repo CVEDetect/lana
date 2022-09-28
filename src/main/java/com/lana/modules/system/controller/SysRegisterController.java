@@ -1,8 +1,11 @@
 package com.lana.modules.system.controller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.Result;
 import com.lana.modules.system.pojo.entity.SysUserEntity;
 import com.lana.modules.system.service.SysUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2022/9/27 12:54
  */
 @RestController
+@Api(tags="注册接口")
+@ApiSupport(author = "liuyulet")
 @RequestMapping("/sys/reg")
 public class SysRegisterController {
     @Autowired
@@ -23,7 +28,7 @@ public class SysRegisterController {
     /**
      * 注册用户
      */
-
+    @ApiOperation(value = "注册用户", notes = "注册用户")
     @PostMapping("/register")
     public Result login(@RequestBody SysUserEntity form){
 

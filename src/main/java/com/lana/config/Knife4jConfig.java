@@ -25,7 +25,7 @@ public class Knife4jConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lana.modules.business"))
+                .apis(RequestHandlerSelectors.basePackage("com.lana.modules"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -34,7 +34,7 @@ public class Knife4jConfig {
         return new ApiInfoBuilder()
                 .title("lana-boot 后台服务API接口文档")
                 .description("swagger-bootstrap-ui")
-                .termsOfServiceUrl("http://127.0.0.1:8081/lana-boot/")
+                .termsOfServiceUrl("http://host/basePatht/")
                 .version("1.0")
                 .contact("liuyulet")
                 .build();

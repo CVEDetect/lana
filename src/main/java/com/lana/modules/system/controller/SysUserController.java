@@ -9,6 +9,7 @@
 package com.lana.modules.system.controller;
 
 
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.Constant;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
@@ -20,6 +21,8 @@ import com.lana.modules.system.pojo.dto.PasswordDTO;
 import com.lana.modules.system.pojo.entity.SysUserEntity;
 import com.lana.modules.system.service.SysUserRoleService;
 import com.lana.modules.system.service.SysUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.Sha256Hash;
@@ -34,7 +37,10 @@ import java.util.Map;
  * @auther liuyulet
  * @date 2022/9/27 12:54
  */
+
 @RestController
+@Api(tags="登录接口")
+@ApiSupport(author = "liuyulet")
 @RequestMapping("/sys/user")
 public class SysUserController extends AbstractController {
 	@Autowired
@@ -46,6 +52,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 所有用户列表
 	 */
+	@ApiOperation(value = "用户列表", notes = "用户列表")
 	@GetMapping("/list")
 	@RequiresPermissions("sys:user:list")
 	public Result list(@RequestParam Map<String, Object> params){
@@ -61,6 +68,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 获取登录的用户信息
 	 */
+	@ApiOperation(value = "用户信息", notes = "用户信息")
 	@GetMapping("/info")
 	public Result info(){
 		return Result.ok(getUser());
@@ -69,6 +77,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 修改登录用户密码
 	 */
+	@ApiOperation(value = "修改密码", notes = "修改密码")
 	@PostMapping("/password")
 	public Result password(@RequestBody PasswordDTO form){
 		Assert.isBlank(form.getNewPassword(), "新密码不为能空");
@@ -90,6 +99,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 用户信息
 	 */
+	@ApiOperation(value = "用户详情", notes = "用户详情")
 	@GetMapping("/info/{userId}")
 	@RequiresPermissions("sys:user:info")
 	public Result info(@PathVariable("userId") Long userId){
@@ -105,6 +115,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 保存用户
 	 */
+	@ApiOperation(value = "保存用户", notes = "保存用户")
 	@PostMapping("/save")
 	@RequiresPermissions("sys:user:save")
 	public Result save(@RequestBody SysUserEntity user){
@@ -118,6 +129,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 修改用户
 	 */
+	@ApiOperation(value = "修改用户", notes = "修改用户")
 	@PostMapping("/update")
 	@RequiresPermissions("sys:user:update")
 	public Result update(@RequestBody SysUserEntity user){
@@ -131,7 +143,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 删除用户
 	 */
-
+	@ApiOperation(value = "删除用户", notes = "删除用户")
 	@PostMapping("/delete")
 	@RequiresPermissions("sys:user:delete")
 	public Result delete(@RequestBody Long[] userIds){

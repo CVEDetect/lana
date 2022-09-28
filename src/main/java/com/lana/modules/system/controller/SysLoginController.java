@@ -9,6 +9,7 @@
 package com.lana.modules.system.controller;
 
 
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.Result;
 
 import com.lana.modules.system.pojo.dto.SysLoginDTO;
@@ -16,6 +17,8 @@ import com.lana.modules.system.pojo.entity.SysUserEntity;
 import com.lana.modules.system.service.SysCaptchaService;
 import com.lana.modules.system.service.SysUserService;
 import com.lana.modules.system.service.SysUserTokenService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,8 @@ import java.io.IOException;
  * @auther liuyulet
  * @date 2022/9/27 12:54
  */
-
+@Api(tags="登录接口")
+@ApiSupport(author = "liuyulet")
 @RestController
 public class SysLoginController extends AbstractController {
 	@Autowired
@@ -48,6 +52,7 @@ public class SysLoginController extends AbstractController {
 	/**
 	 * 验证码
 	 */
+	@ApiOperation(value = "验证码", notes = "验证码")
 	@GetMapping("captcha.jpg")
 	public void captcha(HttpServletResponse response, String uuid)throws IOException {
 		response.setHeader("Cache-Control", "no-store, no-cache");
@@ -64,7 +69,7 @@ public class SysLoginController extends AbstractController {
 	/**
 	 * 登录
 	 */
-
+	@ApiOperation(value = "登录接口", notes = "登录接口")
 	@PostMapping("/sys/login")
 	public Result login(@RequestBody SysLoginDTO form)throws IOException {
 		/*boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
@@ -93,6 +98,7 @@ public class SysLoginController extends AbstractController {
 	/**
 	 * 退出
 	 */
+	@ApiOperation(value = "退出", notes = "退出")
 	@PostMapping("/sys/logout")
 	public Result logout() {
 		sysUserTokenService.logout(getUserId());
