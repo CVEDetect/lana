@@ -53,8 +53,19 @@ public class SysUserController extends AbstractController {
 	 * 所有用户列表
 	 */
 	@ApiOperation(value = "用户列表", notes = "用户列表")
+	@GetMapping("/getUser")
+	public Result list(){
+
+		List<SysUserEntity> page = sysUserService.list();
+
+		return Result.ok(page);
+	}
+
+	/**
+	 * 所有用户列表
+	 */
+	@ApiOperation(value = "用户列表", notes = "用户列表")
 	@GetMapping("/list")
-	@RequiresPermissions("sys:user:list")
 	public Result list(@RequestParam Map<String, Object> params){
 		//只有超级管理员，才能查看所有管理员列表
 		if(getUserId() != Constant.SUPER_ADMIN){
@@ -64,7 +75,7 @@ public class SysUserController extends AbstractController {
 
 		return Result.ok(page);
 	}
-	
+
 	/**
 	 * 获取登录的用户信息
 	 */
@@ -101,7 +112,6 @@ public class SysUserController extends AbstractController {
 	 */
 	@ApiOperation(value = "用户详情", notes = "用户详情")
 	@GetMapping("/info/{userId}")
-	@RequiresPermissions("sys:user:info")
 	public Result info(@PathVariable("userId") Long userId){
 		SysUserEntity user = sysUserService.getById(userId);
 		
@@ -117,7 +127,6 @@ public class SysUserController extends AbstractController {
 	 */
 	@ApiOperation(value = "保存用户", notes = "保存用户")
 	@PostMapping("/save")
-	@RequiresPermissions("sys:user:save")
 	public Result save(@RequestBody SysUserEntity user){
 		ValidatorUtils.validateEntity(user, AddGroup.class);
 
@@ -131,7 +140,6 @@ public class SysUserController extends AbstractController {
 	 */
 	@ApiOperation(value = "修改用户", notes = "修改用户")
 	@PostMapping("/update")
-	@RequiresPermissions("sys:user:update")
 	public Result update(@RequestBody SysUserEntity user){
 		ValidatorUtils.validateEntity(user, UpdateGroup.class);
 
@@ -145,7 +153,6 @@ public class SysUserController extends AbstractController {
 	 */
 	@ApiOperation(value = "删除用户", notes = "删除用户")
 	@PostMapping("/delete")
-	@RequiresPermissions("sys:user:delete")
 	public Result delete(@RequestBody Long[] userIds){
 		if(ArrayUtils.contains(userIds, 1L)){
 			return Result.error("系统管理员不能删除");

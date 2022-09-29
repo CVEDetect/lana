@@ -90,8 +90,8 @@ public class SysLoginController extends AbstractController {
 			return Result.error("账号已被锁定,请联系管理员");
 		}
 		//生成token，并保存到数据库
-		Result r = sysUserTokenService.createToken(user.getUserId());
-		return r;
+		Result result = sysUserTokenService.createToken(user.getUserId());
+		return result;
 	}
 
 
