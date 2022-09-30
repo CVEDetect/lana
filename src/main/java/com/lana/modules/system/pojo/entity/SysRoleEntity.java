@@ -20,8 +20,8 @@ import java.util.List;
 
 /**
  * 角色
- *
- * @author Mark sunlightcs@gmail.com
+ *  * @auther liuyulet
+ *  * @date 2022/9/27 12:54
  */
 @Data
 @TableName("sys_role")
