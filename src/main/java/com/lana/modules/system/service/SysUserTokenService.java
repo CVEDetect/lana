@@ -21,13 +21,13 @@ import com.lana.modules.system.pojo.entity.SysUserTokenEntity;
 public interface SysUserTokenService extends IService<SysUserTokenEntity> {
 
     /**
-     * 生成token
+     * 将用户信息返回前端
      * @param userId  用户ID
      */
     Result createToken(long userId);
 
     /**
-     * 退出，修改token值
+     * 退出用户
      * @param userId  用户ID
      */
     void logout(long userId);

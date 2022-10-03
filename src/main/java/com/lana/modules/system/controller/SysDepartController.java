@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -65,6 +66,7 @@ public class SysDepartController extends ApiController {
     @ApiOperation(value = "新增组织机构", notes = "新增组织机构")
     @PostMapping("/addDepart")
     public Result addDepart(@RequestBody SysDepart sysDepart) {
+        sysDepart.setCreateTime(new Date());
         sysDepartService.save(sysDepart);
         return Result.ok();
     }
@@ -75,9 +77,9 @@ public class SysDepartController extends ApiController {
      * @return 删除组织机构
      */
     @ApiOperation(value = "删除组织机构", notes = "删除组织机构")
-    @PostMapping("/delDepart")
-    public Result delDepart(@RequestBody Long[] userIds) {
-        sysDepartService.removeByIds(Arrays.asList(userIds));
+    @GetMapping("/delDepart")
+    public Result delDepart(@RequestParam Long userIds) {
+        sysDepartService.removeById(userIds);
         return Result.ok();
     }
 
