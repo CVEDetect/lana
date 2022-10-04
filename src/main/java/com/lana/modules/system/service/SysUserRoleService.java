@@ -8,10 +8,12 @@
 
 package com.lana.modules.system.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lana.modules.system.pojo.entity.SysUserRoleEntity;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -33,4 +35,5 @@ public interface SysUserRoleService extends IService<SysUserRoleEntity> {
      * 根据角色ID数组，批量删除
      */
     int deleteBatch(Long[] roleIds);
+
 }

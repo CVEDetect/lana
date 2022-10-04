@@ -11,15 +11,19 @@ package com.lana.modules.system.pojo.dto;
 import lombok.Data;
 
 /**
- * 登录表单
+ * 密码表单
+ *
  * @auther liuyulet
  */
 @Data
-public class SysLoginDTO {
-    private String username;
-    private String password;
-    private String captcha;
-    private String uuid;
-
+public class UserForDepartDTO {
+    /**
+     * 机构id
+     */
+    private Integer departId;
+    /**
+     * 用户id
+     */
+    private int[] userId;
 
 }

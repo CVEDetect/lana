@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
+import com.lana.modules.system.pojo.dto.UserForDepartDTO;
 import com.lana.modules.system.pojo.entity.SysDepart;
 import com.lana.modules.system.service.SysDepartService;
 import io.swagger.annotations.Api;
@@ -15,6 +16,7 @@ import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 组织机构表(SysDepart)表控制层
@@ -92,6 +94,19 @@ public class SysDepartController extends ApiController {
     @PostMapping("/updateDepart")
     public Result updateDepart(@RequestBody SysDepart sysDepart) {
         sysDepartService.updateById(sysDepart);
+        return Result.ok();
+    }
+
+    /**
+     * 机构绑定人员
+     *
+     * @return 机构绑定人员
+     */
+    @ApiOperation(value = "机构绑定人员", notes = "机构绑定人员")
+    @PostMapping("/userForDepart")
+    public Result userForDepart(@RequestBody UserForDepartDTO userForDepartDTO) {
+        //将数据更新到用户和组织机构中间表
+        sysDepartService.userForDepart(userForDepartDTO);
         return Result.ok();
     }
 
