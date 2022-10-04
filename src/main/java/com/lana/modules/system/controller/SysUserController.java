@@ -23,10 +23,12 @@ import com.lana.modules.system.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,11 +115,29 @@ public class SysUserController extends AbstractController {
     @ApiOperation(value = "保存用户", notes = "保存用户")
     @PostMapping("/save")
     public Result save(@RequestBody SysUserEntity user) {
-
+        user.setCreateTime(new Date());
         sysUserService.saveUser(user);
 
         return Result.ok();
     }
+
+
+
+    /**
+     * 添加用户
+     */
+    @ApiOperation(value = "保存用户", notes = "保存用户")
+    @PostMapping("/hadlesave")
+    public Result hadlesave(@RequestBody SysUserEntity user) {
+
+        user.setPassword("a9ab0ec56ab75985ea3e18ae5246b0ba5763121d7a4e9e7bd83033c3b5b217d8");
+        user.setSalt("0xZ8Nn3qZ9Wge32UEDwa");
+        user.setCreateTime(new Date());
+        sysUserService.saveUser(user);
+
+        return Result.ok();
+    }
+
 
     /**
      * 修改用户

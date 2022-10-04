@@ -46,9 +46,9 @@ public class SysRoleEntity implements Serializable {
     private String remark;
 
     /**
-     * 创建者ID
+     * 创建者
      */
-    private Long createUserId;
+    private String createUser;
 
     @TableField(exist = false)
     private List<Long> menuIdList;

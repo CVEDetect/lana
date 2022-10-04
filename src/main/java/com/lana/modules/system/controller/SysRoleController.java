@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,6 +65,7 @@ public class SysRoleController extends AbstractController {
     @PostMapping("/update")
     @ApiOperation(value = "修改角色", notes = "修改角色")
     public Result updateRole(@RequestBody SysRoleEntity role) {
+        role.setCreateTime(new Date());
         sysRoleService.updateById(role);
         return Result.ok();
     }
@@ -72,10 +74,10 @@ public class SysRoleController extends AbstractController {
      * 删除角色
      * @return 删除角色
      */
-    @PostMapping("/delRole")
+    @GetMapping("/delRole")
     @ApiOperation(value = "删除角色", notes = "删除角色")
-    public Result delRole(@RequestBody Long[] userIds) {
-        sysRoleService.removeByIds(Arrays.asList(userIds));
+    public Result delRole(@RequestParam Long userIds) {
+        sysRoleService.removeById(userIds);
         return Result.ok();
     }
 

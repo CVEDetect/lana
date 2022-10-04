@@ -83,9 +83,14 @@ public class SysUserEntity implements Serializable {
     private List<Long> roleIdList;
 
     /**
+     * 负责部门
+     */
+    private Long departIds;
+
+    /**
      * 创建者ID
      */
-    private Long createUser;
+    private String createUser;
 
     /**
      * 创建时间

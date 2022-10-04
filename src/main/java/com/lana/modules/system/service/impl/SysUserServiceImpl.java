@@ -79,7 +79,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		String salt = RandomStringUtils.randomAlphanumeric(20);
 		user.setPassword(new Sha256Hash(user.getPassword(), salt).toHex());
 		user.setSalt(salt);
-		user.setStatus(2);
+		user.setStatus(1);
 		this.save(user);
 		
 		//保存用户与角色关系
