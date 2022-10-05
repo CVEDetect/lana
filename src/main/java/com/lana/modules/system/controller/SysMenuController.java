@@ -65,7 +65,7 @@ public class SysMenuController extends ApiController {
      * @return 角色绑定菜单
      */
     @ApiOperation(value = "角色绑定菜单", notes = "角色绑定菜单")
-    @PostMapping("/userForDepart")
+    @PostMapping("/roleForMenu")
     public Result userForDepart(@RequestBody MenuForRoleDTO menuForRoleDTO) {
         //将数据更新到用户和组织机构中间表
         sysMenuService.userForDepart(menuForRoleDTO);
@@ -78,10 +78,16 @@ public class SysMenuController extends ApiController {
      */
     @ApiOperation(value = "根据用户id查询所拥有的菜单权限", notes = "根据用户id查询所拥有的菜单权限")
     @GetMapping("/nav")
-    public Result nav(@RequestParam(required=true) Long userid){
+    public Result nav(@RequestParam(required=true) String userid){
         //根据用户信息查询可以看到哪些菜单
+        Result<JSONObject> result = new Result<JSONObject>();
+        JSONObject re = new JSONObject();
         List<SysMenuEntity> resulrt = sysMenuService.getNavData(userid);
-        return null;
+        re.put("menus",resulrt);
+        result.setCode(200);
+        result.setMessage("成功");
+        result.setResult(re);
+        return result;
     }
 
 

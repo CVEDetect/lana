@@ -26,7 +26,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
     private SysMenuDao sysMenuDao;
 
     @Override
-    public List<SysMenuEntity> getNavData(Long userid) {
+    public List<SysMenuEntity> getNavData(String userid) {
         return sysMenuDao.getNavData(userid);
     }
 
@@ -37,12 +37,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
 
     @Override
     public void userForDepart(MenuForRoleDTO menuForRoleDTO) {
-        //stream循环插入数据
-        if(menuForRoleDTO.getMenuId().length>0){
-            int[] menuids= menuForRoleDTO.getMenuId();
-            List<Integer> menuidsList= Arrays.stream(menuids).boxed().collect(Collectors.toList());
-            sysMenuDao.userForDepart(menuForRoleDTO.getRoleId(),menuidsList);
-        }
+        //删除该角色的其他所有菜单的授权
+        sysMenuDao.deleteRolMen(menuForRoleDTO.getRoleId());
+        //新增新的授权信息
         if (menuForRoleDTO.getMenuUpdateId().length>0) {
             int[] updatUsers= menuForRoleDTO.getMenuUpdateId();
             List<Integer> userUpdateList= Arrays.stream(updatUsers).boxed().collect(Collectors.toList());

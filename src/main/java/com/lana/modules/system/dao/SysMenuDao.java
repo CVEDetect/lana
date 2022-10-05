@@ -16,12 +16,12 @@ import java.util.List;
 @Mapper
 public interface SysMenuDao extends BaseMapper<SysMenuEntity> {
 
-    List<SysMenuEntity> getNavData(Long userid);
+    List<SysMenuEntity> getNavData(String userid);
 
     List<HashMap<String,Object>> getMenurole(Long role);
 
-    void userForDepart(@Param("roleId")Integer roleId, @Param("menuidsList")List<Integer> menuidsList);
-
     void userUpdateForDepart(@Param("roleId")Integer roleId, @Param("userUpdateList")List<Integer> userUpdateList);
+
+    void deleteRolMen(Integer roleId);
 }
 

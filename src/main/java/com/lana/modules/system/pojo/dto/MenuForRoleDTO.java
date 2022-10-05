@@ -26,12 +26,7 @@ public class MenuForRoleDTO {
     @ApiModelProperty("角色id")
     private Integer roleId;
     /**
-     * 新增绑定菜单id
-     */
-    @ApiModelProperty("新增加要绑定的菜单id：menuId，该对象是int[]数组")
-    private int[] menuId;
-    /**
-     * 修改绑定菜单id
+     * 绑定菜单id
      */
     @ApiModelProperty("已经绑定的，但是要换绑菜单的 菜单id：menuUpdateId，该对象是int[]数组")
     private int[] menuUpdateId;

@@ -2,28 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lana.modules.system.dao.SysMenuDao">
-	<insert id="userForDepart">
+	<insert id="userUpdateForDepart">
 		INSERT INTO sys_role_menu
 		(role_id,menu_id)
 		VALUES
-		<foreach collection ="menuidsList" item="user" separator =",">
+		<foreach collection ="userUpdateList" item="user" separator =",">
 			(#{roleId}, #{user})
 		</foreach >
 
 	</insert>
 
-
-	<update id="userUpdateForDepart" parameterType="java.util.List">
-		UPDATE sys_role_menu SET role_id=#{roleId}
-		where menu_id in
-		<foreach collection="userUpdateList" item="user" index="index" separator="," open="(" close=")">
-			#{user}
-		</foreach>
-	</update>
+    <delete id="deleteRolMen">
+		delete from sys_role_menu where role_id=#{roleId}
+	</delete>
 
 
-
-	<select id="getNavData" resultType="com.lana.modules.system.pojo.entity.SysMenuEntity">
+    <select id="getNavData" resultType="java.util.HashMap">
 		SELECT m.* FROM sys_menu m
 							RIGHT JOIN sys_role_menu mr ON m.menu_id = mr. menu_id
 							LEFT JOIN sys_role r ON r.role_id = mr.role_id

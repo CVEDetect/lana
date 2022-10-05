@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface SysMenuService extends IService<SysMenuEntity> {
 
-    List<SysMenuEntity> getNavData(Long userid);
+    List<SysMenuEntity> getNavData(String userid);
 
     List<HashMap<String,Object>> getMenurole(Long role);
 
