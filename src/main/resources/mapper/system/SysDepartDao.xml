@@ -10,6 +10,15 @@
             (#{departId}, #{user})
         </foreach >
     </insert>
+    <update id="userUpdateForDepart" parameterType="java.util.List">
+
+        UPDATE sys_user_depart SET depart_id=#{departId}
+        where user_id in
+        <foreach collection="userUpdateList" item="user" index="index" separator="," open="(" close=")">
+            #{user}
+        </foreach>
+
+    </update>
 
     <select id="getlist" resultType="com.lana.modules.system.pojo.entity.SysDepart">
         SELECT  id,

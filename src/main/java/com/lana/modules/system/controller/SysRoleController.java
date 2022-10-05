@@ -10,6 +10,8 @@ package com.lana.modules.system.controller;
 
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.Result;
+import com.lana.modules.system.pojo.dto.UserForDepartDTO;
+import com.lana.modules.system.pojo.dto.UserForRoleDTO;
 import com.lana.modules.system.pojo.entity.SysRoleEntity;
 import com.lana.modules.system.service.SysRoleService;
 import io.swagger.annotations.Api;
@@ -80,5 +82,20 @@ public class SysRoleController extends AbstractController {
         sysRoleService.removeById(userIds);
         return Result.ok();
     }
+
+
+    /**
+     * 机构绑定人员
+     *
+     * @return 机构绑定人员
+     */
+    @ApiOperation(value = "机构绑定人员", notes = "机构绑定人员")
+    @PostMapping("/userForRole")
+    public Result userForRole(@RequestBody UserForRoleDTO userForRoleDTO) {
+        //将数据更新到用户和组织机构中间表
+        sysRoleService.userForRole(userForRoleDTO);
+        return Result.ok();
+    }
+
 
 }

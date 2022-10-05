@@ -16,11 +16,11 @@ import lombok.Data;
  * @auther liuyulet
  */
 @Data
-public class UserForDepartDTO {
+public class UserForRoleDTO {
     /**
      * 机构id
      */
-    private Integer departId;
+    private Integer roleId;
     /**
      * 新增绑定用户id
      */

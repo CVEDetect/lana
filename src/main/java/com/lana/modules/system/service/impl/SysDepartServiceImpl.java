@@ -30,12 +30,16 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartDao, SysDepart> i
     @Override
     public void userForDepart(UserForDepartDTO userForDepartDTO) {
         //stream循环插入数据
-        int[] ss= userForDepartDTO.getUserId();
-        List<Integer> userList= Arrays.stream(ss).boxed().collect(Collectors.toList());
-        sysDepartDao.userForDepart(userForDepartDTO.getDepartId(),userList);
-
-
+        if(userForDepartDTO.getUserId().length>0){
+            int[] users= userForDepartDTO.getUserId();
+            List<Integer> userList= Arrays.stream(users).boxed().collect(Collectors.toList());
+            sysDepartDao.userForDepart(userForDepartDTO.getDepartId(),userList);
+        }
+        if (userForDepartDTO.getUserUpdateId().length>0) {
+            int[] updatUsers= userForDepartDTO.getUserUpdateId();
+            List<Integer> userUpdateList= Arrays.stream(updatUsers).boxed().collect(Collectors.toList());
+            sysDepartDao.userUpdateForDepart(userForDepartDTO.getDepartId(),userUpdateList);
+        }
     }
-
 }
 

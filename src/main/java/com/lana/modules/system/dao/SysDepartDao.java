@@ -19,5 +19,8 @@ public interface SysDepartDao extends BaseMapper<SysDepart> {
     List<SysDepart> getlist();
 
     void userForDepart(@Param("departId") Integer departId, @Param("userList")List<Integer> userList);
+
+    void userUpdateForDepart(@Param("departId") Integer departId,  @Param("userUpdateList")List<Integer>  userUpdateList);
+
 }
 
