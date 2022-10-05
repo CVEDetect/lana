@@ -87,6 +87,7 @@ public class SysLoginController extends AbstractController {
         Result result = sysUserTokenService.createToken(user.getUserId());
         JSONObject res= (JSONObject) result.getResult();
         res.put("userAccount",user.getUsername());
+        res.put("userId",user.getUserId());
         res.put("userFullname",user.getFullname());
         return result;
     }

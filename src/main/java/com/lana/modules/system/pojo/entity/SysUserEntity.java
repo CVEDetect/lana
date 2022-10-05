@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.lana.common.validator.group.AddGroup;
 import com.lana.common.validator.group.UpdateGroup;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -28,6 +29,7 @@ import java.util.List;
  */
 @Data
 @TableName("sys_user")
+@ApiModel("用户对象")
 public class SysUserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
