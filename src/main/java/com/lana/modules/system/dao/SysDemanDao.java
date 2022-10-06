@@ -17,5 +17,6 @@ import java.util.List;
 @Mapper
 public interface SysDemanDao extends BaseMapper<SysDeman> {
 
+    void userForDeman(@Param("demendId")Integer demendId, @Param("userList")List<Integer> userList);
 }
 

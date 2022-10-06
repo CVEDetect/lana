@@ -3,6 +3,8 @@ package com.lana.modules.system.controller;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
+import com.lana.modules.system.pojo.dto.UserForDemdDTO;
+import com.lana.modules.system.pojo.dto.UserForRoleDTO;
 import com.lana.modules.system.pojo.entity.SysDeman;
 import com.lana.modules.system.pojo.entity.SysDemanHistroyEntity;
 import com.lana.modules.system.pojo.entity.SysProjectEntity;
@@ -120,6 +122,39 @@ public class SysDemanController  extends  AbstractController{
         //需求修改，就需要将此次修改的记录加入到
         return Result.ok();
     }
+
+    /**
+     * 需求分配人员
+     *
+     * @return 需求分配人员
+     */
+    @ApiOperation(value = "机构绑定人员", notes = "机构绑定人员")
+    @PostMapping("/userForDeman")
+    public Result userForDeman(@RequestBody UserForDemdDTO userForDemdDTO) {
+        //将数据更新到用户和组织机构中间表
+        sysDemanService.userForDeman(userForDemdDTO);
+
+        SysDeman deman = sysDemanService.getById(userForDemdDTO.getDemendId());
+        deman.setDemanStatus(2);
+        sysDemanService.updateById(deman);
+        //修改需求状态
+        return Result.ok();
+    }
+
+    /**
+     * 所有需求列表
+     */
+    @ApiOperation(value = "需求列表", notes = "需求列表")
+    @GetMapping("/getMyDeman")
+    public Result getMyDeman(@RequestParam Map<String, Object> params) {
+
+        PageUtils page = sysDemanService.getMyDeman(params);
+
+        return Result.ok(page);
+    }
+
+
+
 
 }
 
