@@ -6,22 +6,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * (SysDeman)实体类
+ * 需求变更历史表(SysDemanHistroy)实体类
  *
  * @author liuyulet
- * @since 2022-09-30 11:25:38
+ * @since 2022-10-06 13:55:12
  */
 @Data
-@ApiModel("需求实体信息")
-@TableName("sys_deman")
-public class SysDeman implements Serializable {
-    private static final long serialVersionUID = 139595945385381373L;
-
+@ApiModel("需求变更历史实体信息")
+@TableName("sys_deman_histroy")
+public class SysDemanHistroyEntity implements Serializable {
+    private static final long serialVersionUID = 594721568313105660L;
     @TableId
+    @ApiModelProperty("主键")
+    private Long keyid;
+
     @ApiModelProperty("需求id")
     private Long id;
     /**
@@ -45,7 +47,6 @@ public class SysDeman implements Serializable {
      */
     @ApiModelProperty("交底文件名称")
     private String demanDisoName;
-
     /**
      * 需求负责人，由创建需求的时候指定
      */
@@ -63,16 +64,16 @@ public class SysDeman implements Serializable {
     private Date demanDeadline;
     /**
      * 1:新建待分配，2：已分配，3:变更中，4：变更完成；
-        11:开发中，12:开发完成；
-        21:待测试，22:测试中，23:测试完成；
-        31:产品代验收，32：验收检查，33:验收完成；
-        41：待实施，42：实施中，43:实施完成
+     11:开发中，12:开发完成；
+     21:待测试，22:测试中，23:测试完成；
+     31:产品代验收，32：验收检查，33:验收完成；
+     41：待实施，42：实施中，43:实施完成
      */
     @ApiModelProperty("需求状态：1:新建待分配，2：已分配，3:变更中，4：变更完成；\n" +
             "        11:开发中，12:开发完成；\n" +
             "        21:待测试，22:测试中，23:测试完成；\n" +
             "        31:产品代验收，32：验收检查，33:验收完成；\n" +
-            "        41：待实施，42：实施中，43:实施完成，44舍弃")
+            "        41：待实施，42：实施中，43:实施完成")
     private Integer demanStatus;
     /**
      * 变更次数
@@ -90,7 +91,6 @@ public class SysDeman implements Serializable {
      */
     @ApiModelProperty("所属项目名称")
     private String demanProjectNam;
-
     /**
      * 创建者
      */
@@ -101,7 +101,6 @@ public class SysDeman implements Serializable {
      */
     @ApiModelProperty("创建时间")
     private Date createTime;
-
 
 }
 

@@ -17,6 +17,5 @@ import java.util.List;
 @Mapper
 public interface SysDemanDao extends BaseMapper<SysDeman> {
 
-
 }
 

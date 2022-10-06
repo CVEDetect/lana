@@ -33,4 +33,9 @@ public class SysProjectServiceImpl  extends ServiceImpl<SysProjectDao, SysProjec
         );
         return new PageUtils(page);
     }
+
+    @Override
+    public SysProjectEntity getProjects(String demanProject) {
+        return sysProjectDao.getProjects(demanProject);
+    }
 }

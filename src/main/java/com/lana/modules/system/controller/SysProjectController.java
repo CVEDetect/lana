@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -56,7 +57,7 @@ public class SysProjectController  extends  AbstractController{
      * 项目
      * @return 查询结果
      */
-    @ApiOperation(value = "需求列表", notes = "需求列表")
+    @ApiOperation(value = "项目列表", notes = "项目列表 不用传任何参数")
     @GetMapping("/getProject")
     public Result getProject(@RequestParam Map<String, Object> params) {
 
@@ -67,11 +68,27 @@ public class SysProjectController  extends  AbstractController{
 
     /**
      * 项目
-     * @return 新增
+     * @return 查询结果
+     */
+    @ApiOperation(value = "查询全部项目", notes = "查询全部项目")
+    @GetMapping("/getProjectAll")
+    public Result getProjectAll(@RequestParam Map<String, Object> params) {
+        Result<JSONObject> result = new Result<JSONObject>();
+        JSONObject res = new JSONObject();
+        List<SysProjectEntity> page = sysProjectService.list();
+        res.put("projectData",page);
+        result.setCode(200);
+        result.setResult(res);
+        return result;
+    }
+
+    /**
+     * 项目
+     * @return 修改
      */
     @ApiOperation(value = "修改项目", notes = "修改项目")
     @PostMapping("/updateProject")
-    public Result updateProject(@RequestParam SysProjectEntity sysProjectEntity) {
+    public Result updateProject(@RequestBody SysProjectEntity sysProjectEntity) {
 
         sysProjectService.updateById(sysProjectEntity);
 
@@ -79,13 +96,13 @@ public class SysProjectController  extends  AbstractController{
     }
 
     /**
-     * 删除角色
-     * @return 删除角色
+     * 删除
+     * @return 删除
      */
     @GetMapping("/delRole")
     @ApiOperation(value = "删除项目", notes = "删除项目")
-    public Result delRole(@RequestParam SysProjectEntity sysProjectEntity) {
-        sysProjectService.removeById(sysProjectEntity);
+    public Result delRole(@RequestParam Long projectId) {
+        sysProjectService.removeById(projectId);
         return Result.ok();
     }
 

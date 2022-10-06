@@ -14,6 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface SysProjectDao extends BaseMapper<SysProjectEntity> {
 
 
-
+    SysProjectEntity getProjects(String demanProject);
 }
 

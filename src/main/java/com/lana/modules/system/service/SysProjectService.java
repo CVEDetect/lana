@@ -16,4 +16,6 @@ import java.util.Map;
 public interface SysProjectService extends IService<SysProjectEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    SysProjectEntity getProjects(String demanProject);
 }

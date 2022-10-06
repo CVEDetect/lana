@@ -69,6 +69,7 @@ public class SysUserController extends AbstractController {
         JSONObject res = new JSONObject();
         List<SysUserEntity> page = sysUserService.list();
         res.put("userData",page);
+        result.setCode(200);
         result.setResult(res);
         return result;
     }
