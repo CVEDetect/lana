@@ -19,7 +19,13 @@ knife4j:
     enable: false
     username: admin
     password: 123456
-
+# minio配置
+minio:
+  endpoint: http://127.0.01:9000
+  accessKey: minioadmin
+  secretKey: admin
+  bucketName: data
+  httppoint: http://127.0.0.1:9000
 
 spring:
   # 环境 dev|uat|prod

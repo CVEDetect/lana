@@ -9,10 +9,9 @@
 package com.lana.modules.system.controller;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import com.alibaba.fastjson.JSONObject;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
-import com.lana.common.utils.Constant;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
 import com.lana.common.validator.Assert;
@@ -22,14 +21,11 @@ import com.lana.modules.system.service.SysUserRoleService;
 import com.lana.modules.system.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.RandomStringUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +56,21 @@ public class SysUserController extends AbstractController {
         PageUtils page = sysUserService.queryPage(params);
 
         return Result.ok(page);
+    }
+
+
+    /**
+     * 所有用户列表
+     */
+    @ApiOperation(value = "用户列表", notes = "用户列表")
+    @GetMapping("/getUserAll")
+    public Result getUserAll(@RequestParam Map<String, Object> params) {
+        Result<JSONObject> result = new Result<JSONObject>();
+        JSONObject res = new JSONObject();
+        List<SysUserEntity> page = sysUserService.list();
+        res.put("userData",page);
+        result.setResult(res);
+        return result;
     }
 
 
