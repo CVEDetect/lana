@@ -133,7 +133,7 @@ public class SysDemanController  extends  AbstractController{
     public Result userForDeman(@RequestBody UserForDemdDTO userForDemdDTO) {
         //将数据更新到用户和组织机构中间表
         sysDemanService.userForDeman(userForDemdDTO);
-
+        //修改需求状态
         SysDeman deman = sysDemanService.getById(userForDemdDTO.getDemendId());
         deman.setDemanStatus(2);
         sysDemanService.updateById(deman);

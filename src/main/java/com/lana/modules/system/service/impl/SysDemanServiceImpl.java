@@ -51,7 +51,7 @@ public class SysDemanServiceImpl extends ServiceImpl<SysDemanDao, SysDeman> impl
         if(userForDemdDTO.getUserId().length>0){
             int[] users= userForDemdDTO.getUserId();
             List<Integer> userList= Arrays.stream(users).boxed().collect(Collectors.toList());
-            sysDemanDao.userForDeman(userForDemdDTO.getDemendId(),userList);
+            sysDemanDao.userForDeman(userForDemdDTO.getDemendId(),userList,userForDemdDTO.getUserName());
         }
     }
 

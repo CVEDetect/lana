@@ -31,5 +31,11 @@ public class UserForDemdDTO {
     @ApiModelProperty("新增加要绑定的用户id：userId，该对象是int[]数组")
     private int[] userId;
 
+    /**
+     * 授权人
+     */
+    @ApiModelProperty("授权的人是谁")
+    private String userName;
+
 
 }

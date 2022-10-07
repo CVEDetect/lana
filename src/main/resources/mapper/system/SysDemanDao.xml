@@ -5,10 +5,10 @@
 
     <insert id="userForDeman">
         INSERT INTO sys_deman_user
-        (user_id,deman_id)
+        (user_id,deman_id,create_time,create_user)
         VALUES
         <foreach collection ="userList" item="user" separator =",">
-            (#{user},#{demendId})
+            (#{user},#{demendId},NOW(),#{userName})
         </foreach >
 
     </insert>
