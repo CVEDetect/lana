@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * (SysDemanUser)表服务实现类
@@ -21,4 +23,8 @@ public class SysDemanUserServiceImpl extends ServiceImpl<SysDemanUserDao, SysDem
     private SysDemanUserDao sysDemanUserDao;
 
 
+    @Override
+    public List<HashMap<String, Object>> getAllOver(String demanId) {
+        return sysDemanUserDao.getAllOver(demanId);
+    }
 }

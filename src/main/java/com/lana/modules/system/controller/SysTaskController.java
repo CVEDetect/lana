@@ -1,12 +1,16 @@
 package com.lana.modules.system.controller;
 
+import cn.hutool.core.collection.CollUtil;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
+import com.lana.modules.system.pojo.vo.LookCollaVO;
 import com.lana.modules.system.service.SysTaskService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,6 +39,18 @@ public class SysTaskController extends  AbstractController{
         return Result.ok(page);
     }
 
+
+    /**
+     * 协作者信息
+     */
+    @ApiOperation(value = "查看协作者信息", notes = "查看协作者信息")
+    @GetMapping("/getLookColla")
+    public Result getLookColla(@RequestParam String demanId) {
+
+        List<LookCollaVO> page = sysTaskService.getLookColla(demanId);
+
+        return Result.ok(page);
+    }
 
 }
 

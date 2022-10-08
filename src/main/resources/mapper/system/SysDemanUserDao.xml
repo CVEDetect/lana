@@ -3,5 +3,10 @@
 <mapper namespace="com.lana.modules.system.dao.SysDemanUserDao">
 
 
+    <select id="getAllOver" resultType="java.util.HashMap">
+
+        SELECT id FROM sys_deman_user WHERE deman_id=#{demanId} and task_status !=2
+
+    </select>
 </mapper>
 

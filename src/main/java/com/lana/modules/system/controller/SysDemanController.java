@@ -3,18 +3,14 @@ package com.lana.modules.system.controller;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
+import com.lana.modules.system.pojo.dto.NextForDemdDTO;
 import com.lana.modules.system.pojo.dto.UserForDemdDTO;
 import com.lana.modules.system.pojo.dto.UserForRoleDTO;
-import com.lana.modules.system.pojo.entity.SysDeman;
-import com.lana.modules.system.pojo.entity.SysDemanHistroyEntity;
-import com.lana.modules.system.pojo.entity.SysProjectEntity;
-import com.lana.modules.system.pojo.entity.SysUserEntity;
-import com.lana.modules.system.service.SysDemanHistroyService;
-import com.lana.modules.system.service.SysDemanService;
-import com.lana.modules.system.service.SysProjectService;
-import com.lana.modules.system.service.SysUserService;
+import com.lana.modules.system.pojo.entity.*;
+import com.lana.modules.system.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,8 +35,11 @@ public class SysDemanController  extends  AbstractController{
      */
     @Resource
     private SysDemanService sysDemanService;
-    @Autowired
+    @Resource
     private SysUserService sysUserService;
+
+    @Resource
+    private SysDemanUserService sysDemanUserService;
 
     @Resource
     private SysProjectService sysProjectService;
@@ -137,7 +136,31 @@ public class SysDemanController  extends  AbstractController{
         SysDeman deman = sysDemanService.getById(userForDemdDTO.getDemendId());
         deman.setDemanStatus(2);
         sysDemanService.updateById(deman);
+
+        return Result.ok();
+    }
+
+
+
+
+    /**
+     * 下一步
+     *
+     * @return 需求分配人员
+     */
+    @ApiOperation(value = "下一步", notes = "下一步")
+    @PostMapping("/nextForDeman")
+    public Result nextForDeman(@RequestBody NextForDemdDTO nextForDemdDTO) {
+        //将数据更新到用户和组织机构中间表
+        sysDemanService.nextForDeman(nextForDemdDTO);
         //修改需求状态
+        SysDeman deman = sysDemanService.getById(nextForDemdDTO.getDemendId());
+        deman.setDemanStatus(2);
+        sysDemanService.updateById(deman);
+        //修改状态为下一步
+        SysDemanUserEntity sysDemanUserEntity = sysDemanUserService.getById(nextForDemdDTO.getTaskId());
+        sysDemanUserEntity.setTaskStatus(3);
+        sysDemanUserService.updateById(sysDemanUserEntity);
         return Result.ok();
     }
 

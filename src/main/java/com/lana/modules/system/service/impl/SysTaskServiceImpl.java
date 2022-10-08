@@ -7,10 +7,13 @@ import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Query;
 import com.lana.modules.system.pojo.entity.SysTaskEntity;
 import com.lana.modules.system.dao.SysTaskDao;
+import com.lana.modules.system.pojo.vo.LookCollaVO;
 import com.lana.modules.system.service.SysTaskService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,4 +39,9 @@ public class SysTaskServiceImpl extends ServiceImpl<SysTaskDao, SysTaskEntity> i
         return new PageUtils(page);
     }
 
+
+    @Override
+    public List<LookCollaVO> getLookColla(String demanId) {
+        return sysTaskDao.getLookColla(demanId);
+    }
 }

@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.lana.modules.system.pojo.entity.SysDemanUserEntity;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * (SysDemanUser)表服务接口
  * @auther liuyulet
@@ -13,4 +16,5 @@ import org.springframework.data.domain.PageRequest;
 public interface SysDemanUserService extends IService<SysDemanUserEntity> {
 
 
+    List<HashMap<String, Object>> getAllOver(String demanId);
 }

@@ -2,6 +2,7 @@ package com.lana.modules.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lana.common.utils.PageUtils;
+import com.lana.modules.system.pojo.dto.NextForDemdDTO;
 import com.lana.modules.system.pojo.dto.UserForDemdDTO;
 import com.lana.modules.system.pojo.entity.SysDeman;
 
@@ -22,4 +23,6 @@ public interface SysDemanService extends IService<SysDeman> {
     void userForDeman(UserForDemdDTO userForDemdDTO);
 
     PageUtils getMyDeman(Map<String, Object> params);
+
+    void nextForDeman(NextForDemdDTO nextForDemdDTO);
 }

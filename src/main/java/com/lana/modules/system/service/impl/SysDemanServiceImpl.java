@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Query;
 import com.lana.modules.system.dao.SysDemanDao;
+import com.lana.modules.system.pojo.dto.NextForDemdDTO;
 import com.lana.modules.system.pojo.dto.UserForDemdDTO;
 import com.lana.modules.system.pojo.entity.SysDeman;
 import com.lana.modules.system.pojo.entity.SysUserEntity;
@@ -66,5 +67,15 @@ public class SysDemanServiceImpl extends ServiceImpl<SysDemanDao, SysDeman> impl
                         .select().orderByDesc("create_time")
         );
         return new PageUtils(page);
+    }
+
+    @Override
+    public void nextForDeman(NextForDemdDTO nextForDemdDTO) {
+        //stream循环插入数据
+        if(nextForDemdDTO.getUserId().length>0){
+            int[] users= nextForDemdDTO.getUserId();
+            List<Integer> userList= Arrays.stream(users).boxed().collect(Collectors.toList());
+            sysDemanDao.userForDeman(nextForDemdDTO.getDemendId(),userList,nextForDemdDTO.getUserName());
+        }
     }
 }
