@@ -19,6 +19,7 @@ import com.lana.modules.system.pojo.dto.PasswordDTO;
 import com.lana.modules.system.pojo.entity.SysUserEntity;
 import com.lana.modules.system.service.SysUserRoleService;
 import com.lana.modules.system.service.SysUserService;
+import com.lana.modules.system.service.SysUserTokenService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.crypto.hash.Sha256Hash;
@@ -44,7 +45,8 @@ public class SysUserController extends AbstractController {
     private SysUserService sysUserService;
     @Autowired
     private SysUserRoleService sysUserRoleService;
-
+    @Autowired
+    private SysUserTokenService sysUserTokenService;
 
     /**
      * 所有用户列表
@@ -99,8 +101,11 @@ public class SysUserController extends AbstractController {
 
         //更新密码
         boolean flag = sysUserService.updatePassword(getUserId(), password, newPassword);
+
         if (!flag) {
             return Result.error("原密码不正确");
+        }else {
+            Result resultsss = sysUserTokenService.createToken(getUserId());
         }
 
         return Result.ok();
@@ -142,8 +147,7 @@ public class SysUserController extends AbstractController {
     @PostMapping("/hadlesave")
     public Result hadlesave(@RequestBody SysUserEntity user) {
 
-        user.setPassword("a9ab0ec56ab75985ea3e18ae5246b0ba5763121d7a4e9e7bd83033c3b5b217d8");
-        user.setSalt("0xZ8Nn3qZ9Wge32UEDwa");
+        user.setPassword("000000");
         user.setCreateTime(new Date());
         sysUserService.saveUser(user);
 
