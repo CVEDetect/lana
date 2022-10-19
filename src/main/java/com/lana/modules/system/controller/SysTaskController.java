@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,44 @@ public class SysTaskController extends  AbstractController{
 
         return Result.ok(page);
     }
+
+
+
+    /**
+     * 过程管理
+     */
+    @ApiOperation(value = "过程列表", notes = "过程列表")
+    @GetMapping("/getstep")
+    public Result getstep() {
+
+
+        List<HashMap<String,Object>> dates = new ArrayList<HashMap<String,Object>>();
+        HashMap<String, Object> hashMap = new HashMap<>();
+        HashMap<String, Object> hashMap1 = new HashMap<>();
+        HashMap<String, Object> hashMap2 = new HashMap<>();
+        HashMap<String, Object> hashMap3 = new HashMap<>();
+        hashMap.put("value",1);
+        hashMap.put("label","需求整理");
+
+        hashMap1.put("value",2);
+        hashMap1.put("label","软件开发");
+
+        hashMap2.put("value",3);
+        hashMap2.put("label","功能测试");
+
+        hashMap3.put("value",4);
+        hashMap3.put("label","实施上线");
+
+
+        dates.add(hashMap);
+        dates.add(hashMap1);
+        dates.add(hashMap2);
+        dates.add(hashMap3);
+
+        return Result.ok(dates);
+    }
+
+
 
 }
 
