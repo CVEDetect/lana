@@ -1,5 +1,6 @@
 package com.lana.modules.system.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -15,7 +16,7 @@ import java.io.Serializable;
 @TableName("sys_user_depart")
 public class SysUserDepartEntity implements Serializable {
     private static final long serialVersionUID = 151455860810935026L;
-    
+    @TableId
     private Long id;
     /**
      * 组织机构id

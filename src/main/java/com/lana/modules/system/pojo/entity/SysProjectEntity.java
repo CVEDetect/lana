@@ -1,5 +1,6 @@
 package com.lana.modules.system.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,6 +22,7 @@ public class SysProjectEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("项目id，修改项目信息的时候需要携带")
+    @TableId
     private Long projectId;
     /**
      * 项目名称

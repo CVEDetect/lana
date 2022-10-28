@@ -1,5 +1,6 @@
 package com.lana.modules.system.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class SysTaskEntity implements Serializable {
     /**
      * 任务id
      */
+    @TableId
     private Integer id;
     /**
      * 任务名称

@@ -1,5 +1,6 @@
 package com.lana.modules.system.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -17,7 +18,7 @@ import java.util.Date;
 @TableName("sys_deman_user")
 public class SysDemanUserEntity implements Serializable {
     private static final long serialVersionUID = 491299544237945298L;
-    
+    @TableId
     private Long id;
     /**
      * 用户id
