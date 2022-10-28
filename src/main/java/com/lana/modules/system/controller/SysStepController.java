@@ -50,6 +50,20 @@ public class SysStepController extends AbstractController {
     }
 
 
+    /**
+     * 过程管理
+     */
+    @ApiOperation(value = "过程节点、人员信息查询", notes = "过程节点、人员信息查询")
+    @GetMapping("/delstep")
+    public Result delstep(@RequestParam Long stepId) {
+
+        sysStepService.removeById(stepId);
+        sysStepService.delStepNode(stepId);
+        sysStepService.delStepNodeUser(stepId);
+        return Result.ok();
+    }
+
+
 
     /**
      * 获取过程节点信息

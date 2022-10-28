@@ -24,5 +24,9 @@ public interface SysStepDao  extends BaseMapper<SysStep> {
     List<HashMap<String, Object>> getByStep(Long stepId);
 
     List<HashMap<String, Object>> getByStepPeople(Long stepId);
+
+    void delStepNode(Long stepId);
+
+    void delStepNodeUser(Long stepId);
 }
 

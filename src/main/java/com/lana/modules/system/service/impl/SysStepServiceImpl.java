@@ -71,4 +71,14 @@ public class SysStepServiceImpl extends ServiceImpl<SysStepDao, SysStep> impleme
         return jsonobject;
     }
 
+    @Override
+    public void delStepNode(Long stepId) {
+        sysStepDao.delStepNode(stepId);
+    }
+
+    @Override
+    public void delStepNodeUser(Long stepId) {
+        sysStepDao.delStepNodeUser(stepId);
+    }
+
 }

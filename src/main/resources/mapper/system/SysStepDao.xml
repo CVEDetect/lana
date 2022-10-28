@@ -23,13 +23,19 @@
             (#{stepId}, #{value},#{user})
         </foreach >
     </insert>
+
     <select id="getByStep" resultType="java.util.HashMap">
         SELECT step_node_label AS label,step_node_value AS value FROM sys_step_node WHERE step_id = #{stepId}
     </select>
     <select id="getByStepPeople" resultType="java.util.HashMap">
         SELECT node_id AS nodeId,GROUP_CONCAT(user_id) AS userId  from  sys_step_node_user where step_id = #{stepId} GROUP BY nodeId
     </select>
-
+    <delete id="delStepNode">
+        delete from sys_step_node where step_id=#{stepId}
+    </delete>
+    <delete id="delStepNodeUser">
+        delete from sys_step_node_user where step_id=#{stepId}
+    </delete>
 
 </mapper>
 

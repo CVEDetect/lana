@@ -30,4 +30,7 @@ public interface SysStepService  extends IService<SysStep> {
 
     JSONObject getByStep(Long stepId);
 
+    void delStepNode(Long stepId);
+
+    void delStepNodeUser(Long stepId);
 }
