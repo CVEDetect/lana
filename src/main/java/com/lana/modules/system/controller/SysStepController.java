@@ -38,22 +38,22 @@ public class SysStepController extends AbstractController {
     private SysStepNodeService sysStepNodeService;
 
     /**
-     * 过程管理
+     * 过程节点查询
      */
     @ApiOperation(value = "过程节点、人员信息查询", notes = "过程节点、人员信息查询")
     @GetMapping("/getstepNode")
     public Result getstep(@RequestParam Long stepId) {
 
-        JSONObject dates= sysStepService.getByStep(stepId);
+        JSONObject dates = sysStepService.getByStep(stepId);
 
         return Result.ok(dates);
     }
 
 
     /**
-     * 过程管理
+     * 过程节点删除
      */
-    @ApiOperation(value = "过程节点、人员信息查询", notes = "过程节点、人员信息查询")
+    @ApiOperation(value = "过程节点、人员信息删除", notes = "过程节点、人员信息删除")
     @GetMapping("/delstep")
     public Result delstep(@RequestParam Long stepId) {
 
@@ -64,9 +64,8 @@ public class SysStepController extends AbstractController {
     }
 
 
-
     /**
-     * 获取过程节点信息
+     * 获取过程节点信息列表
      */
     @ApiOperation(value = "协作过程列表", notes = "协作过程列表")
     @GetMapping("/getStep")
@@ -84,7 +83,22 @@ public class SysStepController extends AbstractController {
     @ApiOperation(value = "保存过程节点用户信息", notes = "保存过程节点用户信息")
     @PostMapping("/saveStep")
     public Result saveStep(@RequestBody JSONObject jsonObject) {
+        Result resuls = new Result();
+        //检查是新增还是修改，type=1则为新增，type=0则为修改。修改只多了一步删除操作，删除完再重新添加；
+        if (jsonObject.get("type").toString().equals("0")) {
+            Result R = delstep(Long.parseLong(jsonObject.get("stepId").toString()));
+            if (R.getCode() == 200) {
+                System.out.println("删除成功，准备重新加入");
+                resuls = stepAddUpdate(jsonObject);
+            }
+        } else {
+            resuls = stepAddUpdate(jsonObject);
+        }
+        return resuls;
+    }
 
+
+    public Result stepAddUpdate(JSONObject jsonObject) {
         //处理数据保存过程信息
         SysStep sysStep = new SysStep();
         sysStep.setStepName(jsonObject.getString("stepName"));
@@ -107,10 +121,8 @@ public class SysStepController extends AbstractController {
             HashMap<String, Object> sss = jsonObject.getObject("userSelection", HashMap.class);
             //获取字符
             String userss = sss.get(stepList.get(i).get("value").toString()).toString();
-            //获取截取字段
-            String dats = userss.substring(1, userss.length() - 1);
-            //增加判断，如果是一个人员就直接生成数组
-
+            String value = userss.substring(1, userss.length() - 1);
+            String dats = value.replace(" ", "");
             //生成数组
             String[] users = dats.split(",");
             int[] array = Arrays.stream(users).mapToInt(Integer::parseInt).toArray();
