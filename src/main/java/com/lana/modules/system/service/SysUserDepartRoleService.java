@@ -17,4 +17,6 @@ public interface SysUserDepartRoleService extends IService<SysUserDepartRoleEnti
 
 
     PageUtils queryPage(Map<String, Object> params);
+
+    PageUtils getstepPage(Map<String, Object> params);
 }

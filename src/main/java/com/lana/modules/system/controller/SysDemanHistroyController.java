@@ -1,8 +1,10 @@
 package com.lana.modules.system.controller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
 import com.lana.modules.system.service.SysDemanHistroyService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,8 @@ import java.util.Map;
  * @author liuyulet
  * @since 2022-10-06 13:55:12
  */
+@Api(tags = "需求变更历史")
+@ApiSupport(author = "liuyulet")
 @RestController
 @RequestMapping("/sysDemanHistroy")
 public class SysDemanHistroyController extends  AbstractController{

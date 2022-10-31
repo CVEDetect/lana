@@ -1,10 +1,12 @@
 package com.lana.modules.system.controller;
 
 import cn.hutool.core.collection.CollUtil;
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
 import com.lana.modules.system.pojo.vo.LookCollaVO;
 import com.lana.modules.system.service.SysTaskService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ import java.util.Map;
  * @auther liuyulet
  * @since 2022-10-07 21:45:13
  */
+@Api(tags = "任务信息")
+@ApiSupport(author = "liuyulet")
 @RestController
 @RequestMapping("/sysTask")
 public class SysTaskController extends  AbstractController{

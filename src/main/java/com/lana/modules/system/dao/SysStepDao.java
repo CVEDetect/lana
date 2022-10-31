@@ -28,5 +28,7 @@ public interface SysStepDao  extends BaseMapper<SysStep> {
     void delStepNode(Long stepId);
 
     void delStepNodeUser(Long stepId);
+
+    List<Long> getUserId(@Param("stepId")Object stepId, @Param("stepNode")Object stepNode);
 }
 

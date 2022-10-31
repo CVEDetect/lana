@@ -81,4 +81,9 @@ public class SysStepServiceImpl extends ServiceImpl<SysStepDao, SysStep> impleme
         sysStepDao.delStepNodeUser(stepId);
     }
 
+    @Override
+    public List<Long> getUserId(Object stepId, Object stepNode) {
+        return sysStepDao.getUserId(stepId,stepNode);
+    }
+
 }

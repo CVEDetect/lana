@@ -2,6 +2,7 @@ package com.lana.modules.system.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
 import com.lana.modules.system.pojo.dto.StepNodeDTO;
@@ -9,6 +10,7 @@ import com.lana.modules.system.pojo.entity.SysStep;
 import com.lana.modules.system.pojo.entity.SysStepNode;
 import com.lana.modules.system.service.SysStepNodeService;
 import com.lana.modules.system.service.SysStepService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +27,8 @@ import java.util.*;
  * @author liuyulet
  * @since 2022-10-22 14:31:42
  */
+@Api(tags = "过程信息接口")
+@ApiSupport(author = "liuyulet")
 @RestController
 @RequestMapping("/sysStep")
 public class SysStepController extends AbstractController {

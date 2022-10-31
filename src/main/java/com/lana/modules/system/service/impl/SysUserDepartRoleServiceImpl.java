@@ -35,4 +35,17 @@ public class SysUserDepartRoleServiceImpl extends ServiceImpl<SysUserDepartRoleD
 
         return new PageUtils(page);
     }
+
+    @Override
+    public PageUtils getstepPage(Map<String, Object> params) {
+
+        IPage<SysUserDepartRoleEntity> page = this.page(
+                new Query<SysUserDepartRoleEntity>().getPage(params),
+                new QueryWrapper<SysUserDepartRoleEntity>()
+                .in(params.get("userId") != null,"user_id",params.get("userIds"))
+
+        );
+
+        return new PageUtils(page);
+    }
 }

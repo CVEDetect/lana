@@ -33,4 +33,6 @@ public interface SysStepService  extends IService<SysStep> {
     void delStepNode(Long stepId);
 
     void delStepNodeUser(Long stepId);
+
+    List<Long> getUserId(Object stepId, Object stepNode);
 }

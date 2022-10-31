@@ -1,10 +1,12 @@
 package com.lana.modules.system.controller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.Result;
 import com.lana.modules.system.pojo.dto.OverTeskDTO;
 import com.lana.modules.system.pojo.entity.SysDemanUserEntity;
 import com.lana.modules.system.pojo.entity.SysDepart;
 import com.lana.modules.system.service.SysDemanUserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.crypto.hash.Hash;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +23,8 @@ import java.util.List;
  * @auther liuyulet
  * @since 2022-10-07 23:16:34
  */
+@Api(tags = "需求人员分配")
+@ApiSupport(author = "liuyulet")
 @RestController
 @RequestMapping("/sysDemanUser")
 public class SysDemanUserController {
