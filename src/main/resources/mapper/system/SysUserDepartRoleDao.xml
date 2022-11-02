@@ -3,6 +3,12 @@
 <mapper namespace="com.lana.modules.system.dao.SysUserDepartRoleDao">
 
 
+    <select id="getstepPage" resultType="java.util.Map">
+        select fullname,username,duty_name as dutyName,depart_name as departName,role_name as roleName from sys_user_depart_role where user_id in
+        <foreach collection="sss" item="user" index="index" separator="," open="(" close=")">
+            #{user}
+        </foreach>
+    </select>
 
 </mapper>
 

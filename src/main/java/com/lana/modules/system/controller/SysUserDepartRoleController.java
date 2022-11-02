@@ -4,6 +4,7 @@ package com.lana.modules.system.controller;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
+import com.lana.modules.system.pojo.entity.SysUserDepartRoleEntity;
 import com.lana.modules.system.service.SysStepService;
 import com.lana.modules.system.service.SysUserDepartRoleService;
 import io.swagger.annotations.Api;
@@ -56,7 +57,7 @@ public class SysUserDepartRoleController extends AbstractController{
         //获取
         List<Long> sss =sysStepService.getUserId(params.get("stepId"),params.get("stepNode"));
         params.put("userIds",sss);
-        PageUtils page = sysUserDepartRoleService.getstepPage(params);
+        List<Map<String,Object>> page = sysUserDepartRoleService.getstepPage(sss);
 
         return Result.ok(page);
     }

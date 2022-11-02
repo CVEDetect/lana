@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.lana.common.utils.PageUtils;
 import com.lana.modules.system.pojo.entity.SysUserDepartRoleEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,5 +19,5 @@ public interface SysUserDepartRoleService extends IService<SysUserDepartRoleEnti
 
     PageUtils queryPage(Map<String, Object> params);
 
-    PageUtils getstepPage(Map<String, Object> params);
+    List<Map<String, Object>> getstepPage(List<Long> sss);
 }

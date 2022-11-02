@@ -23,6 +23,7 @@
 							LEFT JOIN sys_role r ON r.role_id = mr.role_id
 							LEFT JOIN sys_user_role ur ON ur.role_id = r.role_id
 		WHERE ur.user_id= #{userid}
+		ORDER BY m.order_num ASC
 	</select>
 	<select id="getMenurole" resultType="java.util.HashMap">
 		SELECT m.id,m.role_id AS roleId, m.menu_id AS menuId FROM sys_role_menu m

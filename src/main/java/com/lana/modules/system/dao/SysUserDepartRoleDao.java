@@ -4,6 +4,10 @@ package com.lana.modules.system.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lana.modules.system.pojo.entity.SysUserDepartRoleEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -16,5 +20,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface SysUserDepartRoleDao extends BaseMapper<SysUserDepartRoleEntity> {
 
 
+    List<Map<String, Object>> getstepPage(@Param("sss") List<Long> sss);
 }
 
