@@ -36,7 +36,6 @@ public class SysUserDepartRoleServiceImpl extends ServiceImpl<SysUserDepartRoleD
                 new Query<SysUserDepartRoleEntity>().getPage(params),
                 new QueryWrapper<SysUserDepartRoleEntity>()
         );
-
         return new PageUtils(page);
     }
 
