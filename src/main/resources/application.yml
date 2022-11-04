@@ -21,11 +21,11 @@ knife4j:
     password: 123456
 # minio配置
 minio:
-  endpoint: http://127.0.01:9000
+  endpoint: http://123.56.73.203:9000
   accessKey: minioadmin
-  secretKey: admin
+  secretKey: Sdls1234@#
   bucketName: data
-  httppoint: http://127.0.0.1:9000
+  httppoint: http://123.56.73.203:9000
 
 spring:
   # 环境 dev|uat|prod
