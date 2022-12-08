@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @ApiSupport(author = "liuyulet")
 @RestController
 @RequestMapping("/sysDepart")
-public class SysDepartController extends ApiController {
+public class SysDepartController extends AbstractController {
     /**
      * 服务对象
      */

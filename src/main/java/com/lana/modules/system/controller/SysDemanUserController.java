@@ -1,6 +1,7 @@
 package com.lana.modules.system.controller;
 
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
+import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
 import com.lana.modules.system.pojo.dto.OverTeskDTO;
 import com.lana.modules.system.pojo.entity.SysDemanUserEntity;
@@ -17,22 +18,36 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (SysDemanUser)表控制层
  * @auther liuyulet
  * @since 2022-10-07 23:16:34
  */
-@Api(tags = "需求人员分配")
+@Api(tags = "任务人员分配")
 @ApiSupport(author = "liuyulet")
 @RestController
 @RequestMapping("/sysDemanUser")
-public class SysDemanUserController {
+public class SysDemanUserController extends AbstractController{
     /**
      * 服务对象
      */
     @Resource
     private SysDemanUserService sysDemanUserService;
+
+    /**
+     * 所有需求列表
+     */
+    @ApiOperation(value = "任务列表", notes = "任务列表")
+    @GetMapping("/getTesk")
+    public Result list(@RequestParam Map<String, Object> params) {
+
+        PageUtils page = sysDemanUserService.queryPage(params,getUser());
+
+        return Result.ok(page);
+    }
+
 
     /**
      * 修改
@@ -44,8 +59,7 @@ public class SysDemanUserController {
     @GetMapping("/updateTesk")
     public Result updateDepart(@RequestParam String taskId) {
         SysDemanUserEntity sysDemanUserEntity = sysDemanUserService.getById(taskId);
-        sysDemanUserEntity.setTaskStatus(1);
-        sysDemanUserEntity.setTaskStartTime(new Date());
+
         sysDemanUserService.updateById(sysDemanUserEntity);
         return Result.ok();
     }
@@ -59,9 +73,7 @@ public class SysDemanUserController {
     @PostMapping("/overTesk")
     public Result overTesk(@RequestBody OverTeskDTO overTeskDTO) {
         SysDemanUserEntity sysDemanUserEntity = sysDemanUserService.getById(overTeskDTO.getDemanId());
-        sysDemanUserEntity.setTaskRecord(overTeskDTO.getContents());
-        sysDemanUserEntity.setTaskEndTime(new Date());
-        sysDemanUserEntity.setTaskStatus(2);
+
         sysDemanUserService.updateById(sysDemanUserEntity);
         return Result.ok();
     }

@@ -30,7 +30,7 @@ import java.util.List;
 @ApiSupport(author = "liuyulet")
 @RestController
 @RequestMapping("/sysMenu")
-public class SysMenuController extends ApiController {
+public class SysMenuController extends AbstractController {
     /**
      * 服务对象
      */

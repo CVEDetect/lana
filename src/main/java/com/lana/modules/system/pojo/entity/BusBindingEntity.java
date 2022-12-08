@@ -19,8 +19,12 @@ import java.util.Date;
 public class BusBindingEntity  {
     //主键
     private Long id;
-    //任务名称
+    //任务id
     private Long palnItemId;
+    //任务名称
+    private String palnItemName;
+    //计划名称
+    private String palnName;
     //流程名称
     private Long stepId;
     //创建者

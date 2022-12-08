@@ -159,7 +159,7 @@ public class SysDemanController  extends  AbstractController{
         sysDemanService.updateById(deman);
         //修改状态为下一步
         SysDemanUserEntity sysDemanUserEntity = sysDemanUserService.getById(nextForDemdDTO.getTaskId());
-        sysDemanUserEntity.setTaskStatus(3);
+
         sysDemanUserService.updateById(sysDemanUserEntity);
         return Result.ok();
     }

@@ -8,13 +8,16 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.Result;
 import com.lana.modules.system.pojo.entity.BusBindingEntity;
+import com.lana.modules.system.pojo.entity.PalnItemEntity;
 import com.lana.modules.system.service.BusBindingService;
+import com.lana.modules.system.service.PalnItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,13 +30,15 @@ import java.util.List;
 @Api(tags = "任务绑定流程")
 @ApiSupport(author = "liuyulet")
 @RequestMapping("/busBinding")
-public class BusBindingController extends ApiController {
+public class BusBindingController extends AbstractController {
     /**
      * 服务对象
      */
     @Resource
     private BusBindingService busBindingService;
 
+    @Resource
+    private PalnItemService palnItemService;
 
     /**
      * 新增数据
@@ -44,6 +49,13 @@ public class BusBindingController extends ApiController {
     @ApiOperation(value = "新增绑定", notes = "新增绑定")
     @PostMapping("/addBinding")
     public Result insert(@RequestBody BusBindingEntity busBinding) {
+        //绑定之后，生成个人的任务代办任务列表
+        busBinding.setCreateTime(new Date());
+        busBindingService.startApproval(busBinding);
+        //绑定成功之后修改任务状态，以及绑定信息
+        PalnItemEntity palnItemEntity = palnItemService.getById(busBinding.getPalnItemId());
+        palnItemEntity.setPlanStatus(4);
+        palnItemService.updateById(palnItemEntity);
         return Result.ok(this.busBindingService.save(busBinding));
     }
 

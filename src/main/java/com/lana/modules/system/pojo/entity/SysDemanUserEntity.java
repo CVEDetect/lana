@@ -21,35 +21,67 @@ public class SysDemanUserEntity implements Serializable {
     @TableId
     private Long id;
     /**
-     * 用户id
+     * 任务id
      */
-    private Long userId;
+    private Long palnItemId;
     /**
      * 需求id
      */
-    private Long demanId;
+    private String palnItemName;
+
     /**
-     * 0:未开始1:进行中2:已完成
+     * 计划名称
      */
-    private Integer taskStatus;
+    private String palnName;
+
     /**
-     * 任务、代码、测试说明提交记录；
+     * 过程id；
      */
-    private String taskRecord;
+    private Long stepId;
+
     /**
-     * 任务开始时间
+     * 节点名称
      */
-    private Date taskStartTime;
+    private Long nodeId;
+
     /**
-     * 任务结束时间
+     * 用户id
      */
-    private Date taskEndTime;
+    private Long userId;
+
+
     /**
-     * 任务分配人员
+     * 用户名称
+     */
+    private String userName;
+
+
+    /**
+     * 自己任务状态1:接受，2:驳回，3应做，0预置（刚分配）
+     */
+    private Integer userOpinion;
+
+    /**
+     * 整体数据状态。1:任务被驳回，2:任务完成，3:进行中中
+     */
+    private Integer dataType;
+
+    /**
+     * 提交内容/驳回意见
+     */
+    private String userRemarks;
+
+    /**
+     * 完成/驳回时间
+     */
+    private Date overTime;
+
+    /**
+     * 创建者
      */
     private String createUser;
     /**
-     * 任务分配时间
+     * 创建时间
      */
     private Date createTime;
 

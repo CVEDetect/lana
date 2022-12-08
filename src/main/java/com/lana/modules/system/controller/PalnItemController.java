@@ -22,7 +22,7 @@ import java.util.Map;
 @Api(tags = "计划--任务维护")
 @ApiSupport(author = "liuyulet")
 @RequestMapping("/palnItem")
-public class PalnItemController {
+public class PalnItemController extends AbstractController{
     /**
      * 服务对象
      */

@@ -2,11 +2,14 @@ package com.lana.modules.system.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lana.common.utils.PageUtils;
 import com.lana.modules.system.pojo.entity.SysDemanUserEntity;
+import com.lana.modules.system.pojo.entity.SysUserEntity;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (SysDemanUser)表服务接口
@@ -17,4 +20,6 @@ public interface SysDemanUserService extends IService<SysDemanUserEntity> {
 
 
     List<HashMap<String, Object>> getAllOver(String demanId);
+
+    PageUtils queryPage(Map<String, Object> params, SysUserEntity userEntity);
 }
