@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -44,8 +45,19 @@ public class PalnItemController extends AbstractController{
     @ApiOperation(value = "新增计划任务项", notes = "新增计划任务项")
     @PostMapping("/addPalnItem")
     public Result list(@RequestBody PalnItemEntity palnItemEntity) {
-
+        palnItemEntity.setCreateTime(new Date());
         palnItemService.save(palnItemEntity);
+
+        return Result.ok();
+    }
+
+
+
+    @ApiOperation(value = "编辑计划任务项", notes = "编辑计划任务项")
+    @PostMapping("/editPalnItem")
+    public Result editPalnItem(@RequestBody PalnItemEntity palnItemEntity) {
+
+        palnItemService.updateById(palnItemEntity);
 
         return Result.ok();
     }

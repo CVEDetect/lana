@@ -2,6 +2,7 @@ package com.lana.modules.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Query;
@@ -10,6 +11,7 @@ import com.lana.modules.system.pojo.entity.SysDeman;
 import com.lana.modules.system.pojo.entity.SysDemanUserEntity;
 
 import com.lana.modules.system.pojo.entity.SysUserEntity;
+import com.lana.modules.system.pojo.vo.TaskUserDataVO;
 import com.lana.modules.system.service.SysDemanUserService;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +39,8 @@ public class SysDemanUserServiceImpl extends ServiceImpl<SysDemanUserDao, SysDem
 
     @Override
     public PageUtils queryPage(Map<String, Object> params, SysUserEntity userEntit) {
-        IPage<SysDemanUserEntity> page = this.page(
-                new Query<SysDemanUserEntity>().getPage(params),
-                new QueryWrapper<SysDemanUserEntity>()
-                        .eq("user_opinion",3)
-                        .eq("user_id",userEntit.getUserId())
-                        .select().orderByDesc("create_time")
-        );
-        return new PageUtils(page);
+        Page<HashMap<String,Object>> page = new Page<>(Integer.parseInt(params.get("page").toString()), Integer.parseInt(params.get("limit").toString()));
+        IPage<TaskUserDataVO> pages = sysDemanUserDao.getPageData(page,userEntit);
+        return new PageUtils(pages);
     }
 }
