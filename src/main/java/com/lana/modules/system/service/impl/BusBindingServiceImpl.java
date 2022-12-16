@@ -79,6 +79,16 @@ public class BusBindingServiceImpl extends ServiceImpl<BusBindingDao, BusBinding
             }
         }
     }
+
+    @Override
+    public void deletBinDing(Long itemDd) {
+        //解除绑定的话则要删除之前分配好的内容
+        //删除sys_deman_user表
+        //删除绑定表信息
+        sysDemanUserDao.deleteUserTask(itemDd);
+        sysDemanUserDao.deleteBinding(itemDd);
+    }
+
     public int minData(List<HashMap<String, Object>> stepPeople) {
         int minValue = Integer.parseInt(stepPeople.get(0).get("nodeId").toString());
         for (int i = 0; i < stepPeople.size(); i++) {

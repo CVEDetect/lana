@@ -43,4 +43,9 @@ public class SysDemanUserServiceImpl extends ServiceImpl<SysDemanUserDao, SysDem
         IPage<TaskUserDataVO> pages = sysDemanUserDao.getPageData(page,userEntit);
         return new PageUtils(pages);
     }
+
+    @Override
+    public List<SysDemanUserEntity> selectdata(Long palnItemId) {
+        return sysDemanUserDao.selectdata(palnItemId);
+    }
 }

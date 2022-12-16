@@ -85,5 +85,10 @@ public class SysDemanUserEntity implements Serializable {
      */
     private Date createTime;
 
+    /**
+     * 创建时间
+     */
+    private Date updataTime;
+
 }
 

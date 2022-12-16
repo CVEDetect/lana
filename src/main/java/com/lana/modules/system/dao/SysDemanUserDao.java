@@ -25,5 +25,11 @@ public interface SysDemanUserDao extends BaseMapper<SysDemanUserEntity> {
     List<HashMap<String, Object>> getAllOver(String demanId);
 
     IPage<TaskUserDataVO> getPageData(@Param("page") Page<HashMap<String, Object>> page, @Param("userEntit") SysUserEntity userEntit);
+
+    void deleteUserTask(Long itemDd);
+
+    void deleteBinding(Long itemDd);
+
+    List<SysDemanUserEntity> selectdata(Long palnItemId);
 }
 

@@ -42,6 +42,16 @@ public class PalnItemController extends AbstractController{
         return Result.ok(page);
     }
 
+    /**
+     * 删除任务项
+     */
+
+    @ApiOperation(value = "删除任务项", notes = "删除任务项")
+    @GetMapping("/delPalnItem")
+    public Result list(@RequestParam  Long id) {
+        return Result.ok(palnItemService.removeById(id));
+    }
+
     @ApiOperation(value = "新增计划任务项", notes = "新增计划任务项")
     @PostMapping("/addPalnItem")
     public Result list(@RequestBody PalnItemEntity palnItemEntity) {

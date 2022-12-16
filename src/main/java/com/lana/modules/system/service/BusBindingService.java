@@ -13,5 +13,7 @@ import com.lana.modules.system.pojo.entity.BusBindingEntity;
 public interface BusBindingService extends IService<BusBindingEntity> {
 
     void startApproval(BusBindingEntity busBinding);
+
+    void deletBinDing(Long itemDd);
 }
 

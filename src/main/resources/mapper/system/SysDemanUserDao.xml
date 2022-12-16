@@ -47,7 +47,16 @@
                  INNER JOIN  paln_item p ON  p.id = n.paln_item_id
                  INNER JOIN  sys_deman d ON  d.id = p.plan_deman_id
         WHERE n.user_id = #{userEntit.userId}
-        AND n.user_opinion = '3'
     </select>
+    <select id="selectdata" resultType="com.lana.modules.system.pojo.entity.SysDemanUserEntity">
+        SELECT * from sys_deman_user where paln_item_id = #{palnItemId}
+    </select>
+
+    <delete id="deleteUserTask">
+        delete from bus_binding where paln_item_id=#{itemDd}
+    </delete>
+    <delete id="deleteBinding">
+        delete from sys_deman_user where paln_item_id=#{itemDd}
+    </delete>
 </mapper>
 

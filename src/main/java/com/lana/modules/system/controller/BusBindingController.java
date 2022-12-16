@@ -56,7 +56,7 @@ public class BusBindingController extends AbstractController {
         PalnItemEntity palnItemEntity = palnItemService.getById(busBinding.getPalnItemId());
         palnItemEntity.setPlanStatus(4);
         palnItemService.updateById(palnItemEntity);
-        return Result.ok(this.busBindingService.save(busBinding));
+        return Result.ok(busBindingService.save(busBinding));
     }
 
     /**
@@ -68,7 +68,7 @@ public class BusBindingController extends AbstractController {
     @ApiOperation(value = "修改绑定", notes = "修改绑定")
     @PostMapping("/updateBinding")
     public Result update(@RequestBody BusBindingEntity busBinding) {
-        return Result.ok(this.busBindingService.updateById(busBinding));
+        return Result.ok(busBindingService.updateById(busBinding));
     }
 
     /**
@@ -79,7 +79,13 @@ public class BusBindingController extends AbstractController {
     @ApiOperation(value = "解除绑定", notes = "解除绑定(只能解除未进行的任务)")
     @GetMapping("/delBinding")
     public Result delete(@RequestParam Long id) {
-        return Result.ok(this.busBindingService.removeById(id));
+
+        busBindingService.deletBinDing(id);
+        //修改数据状态
+        PalnItemEntity palnItemEntity = palnItemService.getById(id);
+        palnItemEntity.setPlanStatus(0);
+        palnItemService.updateById(palnItemEntity);
+        return Result.ok();
     }
 }
 
