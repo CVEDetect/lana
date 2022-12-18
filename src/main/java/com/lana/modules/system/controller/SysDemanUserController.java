@@ -93,7 +93,7 @@ public class SysDemanUserController extends AbstractController{
      * 任务进度查看
      * @return 任务进度查看
      */
-    @ApiOperation(value = "任务进度查看", notes = "任务进度查看")
+    @ApiOperation(value = "我得任务进度查看", notes = "我得任务进度查看")
     @GetMapping("/findByStatus")
     public Result findByStatus(
             @RequestParam(name="itemid") String itemid
@@ -101,6 +101,48 @@ public class SysDemanUserController extends AbstractController{
         SysDemanUserEntity sysDemanUserEntity = sysDemanUserService.getById(itemid);
         //代办信息列表
         List<SysDemanUserEntity>  sysDemanUserEntitys = sysDemanUserService.selectdata(sysDemanUserEntity.getPalnItemId());
+        //将所有的节点信息处理
+        List<Long> nodeList = new ArrayList<>();
+        for (int i = 0; i < sysDemanUserEntitys.size(); i++) {
+            nodeList.add(sysDemanUserEntitys.get(i).getNodeId());
+        }
+        List<SysDemanUserVO> sysDemanUserEntityvo = new ArrayList<>();
+        //去重相关的节点
+        List<Long> duplicateNode = nodeList.stream().distinct().collect(Collectors.toList());
+        //sysDemanUserService.updateById(sysDemanUserEntity);
+
+        for (int i = 0; i < duplicateNode.size(); i++) {
+            //同一个节点下有几个要审批的用户
+            List<SysDemanUserEntity> sysDemanUser = new ArrayList<>();
+            for (int j = 0; j < sysDemanUserEntitys.size(); j++) {
+                if(duplicateNode.get(i)==sysDemanUserEntitys.get(j).getNodeId()){
+                    sysDemanUser.add(sysDemanUserEntitys.get(j));
+                }
+            }
+            //拼接数据
+            SysDemanUserVO demanUserVO= new SysDemanUserVO();
+            demanUserVO.setNodeId(duplicateNode.get(i));
+            demanUserVO.setSysDemanUserEntity(sysDemanUser);
+            sysDemanUserEntityvo.add(demanUserVO);
+        }
+
+
+        return Result.ok(sysDemanUserEntityvo);
+    }
+
+
+
+    /**
+     * 任务进度查看
+     * @return 任务进度查看
+     */
+    @ApiOperation(value = "任务维护查看任务进度查看", notes = "任务维护查看任务进度查看")
+    @GetMapping("/taskByStatus")
+    public Result taskByStatus(
+            @RequestParam(name="itemid") Long itemid
+    ) {
+        //代办信息列表
+        List<SysDemanUserEntity>  sysDemanUserEntitys = sysDemanUserService.selectdata(itemid);
         //将所有的节点信息处理
         List<Long> nodeList = new ArrayList<>();
         for (int i = 0; i < sysDemanUserEntitys.size(); i++) {

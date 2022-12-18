@@ -3,6 +3,7 @@ package com.lana.modules.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Query;
@@ -11,6 +12,8 @@ import com.lana.modules.system.pojo.dto.NextForDemdDTO;
 import com.lana.modules.system.pojo.dto.UserForDemdDTO;
 import com.lana.modules.system.pojo.entity.SysDeman;
 import com.lana.modules.system.pojo.entity.SysUserEntity;
+import com.lana.modules.system.pojo.vo.SysDemanVO;
+import com.lana.modules.system.pojo.vo.TaskUserDataVO;
 import com.lana.modules.system.service.SysDemanService;
 import com.lana.modules.system.service.SysUserRoleService;
 import org.apache.commons.lang.StringUtils;
@@ -18,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -36,13 +40,9 @@ public class SysDemanServiceImpl extends ServiceImpl<SysDemanDao, SysDeman> impl
     private SysDemanDao sysDemanDao;
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-
-        IPage<SysDeman> page = this.page(
-                new Query<SysDeman>().getPage(params),
-                new QueryWrapper<SysDeman>()
-                .select().orderByDesc("create_time")
-        );
+    public PageUtils queryPage(Map<String, Object> params,SysUserEntity userEntit) {
+        Page<HashMap<String,Object>> page = new Page<>(Integer.parseInt(params.get("page").toString()), Integer.parseInt(params.get("limit").toString()));
+        IPage<SysDemanVO> pages = sysDemanDao.getPageData(page,userEntit);
         return new PageUtils(page);
     }
 
