@@ -21,6 +21,25 @@
         <result property="taskDataStatus" column="data_type" jdbcType="INTEGER"/>
     </resultMap>
 
+    <update id="overUpdate">
+        update sys_deman_user t set t.data_type = 2
+        where t.paln_item_id=#{palnItemId}
+          and t.step_id=#{stepId}
+    </update>
+    <update id="nextUpdate">
+
+        update sys_deman_user t set t.user_opinion = 3
+        where t.step_id=#{stepId}
+          and t.node_id=#{nodeNext}
+          and t.paln_item_id=#{palnItemId};
+
+    </update>
+    <update id="backUpdate">
+        update sys_deman_user t set t.data_type = 1
+        where t.paln_item_id=#{palnItemId}
+          and t.step_id=#{stepId}
+    </update>
+
     <select id="getAllOver" resultType="java.util.HashMap">
 
         SELECT id FROM sys_deman_user WHERE deman_id=#{demanId} and task_status !=2

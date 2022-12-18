@@ -75,19 +75,6 @@ public class SysDemanUserController extends AbstractController{
     }
 
 
-    /**
-     * 修改
-     * @return 修改
-     */
-    @ApiOperation(value = "开始任务", notes = "开始任务")
-    @PostMapping("/overTesk")
-    public Result overTesk(@RequestBody OverTeskDTO overTeskDTO) {
-        SysDemanUserEntity sysDemanUserEntity = sysDemanUserService.getById(overTeskDTO.getDemanId());
-
-        sysDemanUserService.updateById(sysDemanUserEntity);
-        return Result.ok();
-    }
-
 
     /**
      * 任务进度查看
@@ -191,6 +178,19 @@ public class SysDemanUserController extends AbstractController{
         }
     }
 
+
+    /**
+     * 检验
+     * @return 检验
+     */
+    @ApiOperation(value = "完成任务/驳回任务", notes = "完成任务/驳回任务")
+    @PostMapping("/overTask")
+    public Result overTask(@RequestBody OverTeskDTO overTeskDTO) {
+
+        Result datas = sysDemanUserService.overTask(overTeskDTO);
+
+        return datas;
+    }
 
 }
 

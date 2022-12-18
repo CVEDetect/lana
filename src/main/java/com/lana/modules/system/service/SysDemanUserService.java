@@ -3,6 +3,8 @@ package com.lana.modules.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lana.common.utils.PageUtils;
+import com.lana.common.utils.Result;
+import com.lana.modules.system.pojo.dto.OverTeskDTO;
 import com.lana.modules.system.pojo.entity.SysDemanUserEntity;
 import com.lana.modules.system.pojo.entity.SysUserEntity;
 import org.springframework.data.domain.PageRequest;
@@ -24,4 +26,6 @@ public interface SysDemanUserService extends IService<SysDemanUserEntity> {
     PageUtils queryPage(Map<String, Object> params, SysUserEntity userEntity);
 
     List<SysDemanUserEntity> selectdata(Long palnItemId);
+
+    Result overTask(OverTeskDTO overTeskDTO);
 }

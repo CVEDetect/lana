@@ -17,7 +17,7 @@ public class OverTeskDTO {
     /**
      * 需求id
      */
-    @ApiModelProperty("需求id")
+    @ApiModelProperty("任务id")
     private Integer demanId;
 
     /**
@@ -25,6 +25,12 @@ public class OverTeskDTO {
      */
     @ApiModelProperty("提交内容")
     private String contents;
+
+    /**
+     * 完成任务还是驳回任务。(1是0否)
+     */
+    @ApiModelProperty("完成任务还是驳回")
+    private Integer taskType;
 
 
 }

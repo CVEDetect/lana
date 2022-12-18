@@ -41,7 +41,7 @@
             d.deman_consci_acoun ,
             d.deman_deadline ,
             d.deman_status,
-            COALESCE(ROUND( COUNT(DISTINCT u.user_opinion=4)/ COUNT(DISTINCT u.id) *100 , 2),0) AS progresss,
+            COALESCE(ROUND( SUM(u.user_opinion=4)/ COUNT(DISTINCT u.id) *100 , 2),0) AS progresss,
             d.deman_change ,
             d.deman_project ,
             d.deman_project_nam,
@@ -50,6 +50,7 @@
         FROM sys_deman d
                  LEFT JOIN paln_item p ON d.id= p.plan_deman_id
                  LEFT JOIN sys_deman_user u ON u.paln_item_id= p.id
+        WHERE u.data_type !=1
         GROUP BY d.id
     </select>
 

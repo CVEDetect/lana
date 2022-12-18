@@ -31,5 +31,11 @@ public interface SysDemanUserDao extends BaseMapper<SysDemanUserEntity> {
     void deleteBinding(Long itemDd);
 
     List<SysDemanUserEntity> selectdata(Long palnItemId);
+
+    void overUpdate(@Param("palnItemId") Long palnItemId, @Param("stepId") Long stepId);
+
+    void nextUpdate(@Param("nodeNext") int nodeNext, @Param("stepId") Long stepId, @Param("palnItemId") Long palnItemId);
+
+    void backUpdate(@Param("palnItemId") Long palnItemId, @Param("stepId") Long stepId);
 }
 
