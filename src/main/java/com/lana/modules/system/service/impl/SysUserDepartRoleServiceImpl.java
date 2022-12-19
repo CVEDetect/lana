@@ -3,6 +3,7 @@ package com.lana.modules.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Query;
@@ -10,10 +11,13 @@ import com.lana.modules.system.dao.SysStepDao;
 import com.lana.modules.system.dao.SysUserDepartRoleDao;
 
 import com.lana.modules.system.pojo.entity.SysUserDepartRoleEntity;
+import com.lana.modules.system.pojo.vo.SysDemanVO;
+import com.lana.modules.system.pojo.vo.SysUserDepartRoleVO;
 import com.lana.modules.system.service.SysUserDepartRoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,11 +36,10 @@ public class SysUserDepartRoleServiceImpl extends ServiceImpl<SysUserDepartRoleD
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
 
-        IPage<SysUserDepartRoleEntity> page = this.page(
-                new Query<SysUserDepartRoleEntity>().getPage(params),
-                new QueryWrapper<SysUserDepartRoleEntity>()
-        );
+        Page<HashMap<String,Object>> page = new Page<>(Integer.parseInt(params.get("page").toString()), Integer.parseInt(params.get("limit").toString()));
+        IPage<SysUserDepartRoleVO> pages = sysUserDepartRoleDao.getUserData(page);
         return new PageUtils(page);
+
     }
 
     @Override
