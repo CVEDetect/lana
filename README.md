@@ -1,8 +1,8 @@
 # lana-boot
 努努力，搞一个自定义审批内容的OA
-
 技术栈主要使用：jdk8+springboot2.6+mysql+minio+maven3.5+knife4j
 
+欢迎点个Stars支持一下哦
 # 现应用场景：
 目前用于研发团队中的进度安排，创建计划--创建任务，并绑定执行流程，用来需求、研发、测试、实施、运维人员的任务安排、执行结果留存、执行计划把控。
 
@@ -59,3 +59,7 @@ minio，并且创建data桶，以及设置好权限
 ![img_7.png](src/main/resources/imgs/img_7.png)
 
 ![img_8.png](src/main/resources/imgs/img_8.png)
+
+
+![img9.png](src/main/resources/imgs/img9.png)
+![img10.png](src/main/resources/imgs/img10.png)
