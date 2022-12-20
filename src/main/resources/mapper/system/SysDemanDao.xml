@@ -50,8 +50,14 @@
         FROM sys_deman d
                  LEFT JOIN paln_item p ON d.id= p.plan_deman_id
                  LEFT JOIN sys_deman_user u ON u.paln_item_id= p.id
-        WHERE u.data_type !=1
+                 and u.data_type !=1
+        <where>
+            <if test="params.searchSrt !=null and params.searchSrt != ''">
+                and d.deman_name LIKE CONCAT('%',#{params.searchSrt},'%')
+            </if>
+        </where>
         GROUP BY d.id
+        ORDER BY d.create_time DESC
     </select>
 
 

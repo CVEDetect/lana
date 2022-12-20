@@ -23,7 +23,7 @@ public interface SysDemanUserService extends IService<SysDemanUserEntity> {
 
     List<HashMap<String, Object>> getAllOver(String demanId);
 
-    PageUtils queryPage(Map<String, Object> params, SysUserEntity userEntity);
+    PageUtils queryPage(Map<String, String> params, SysUserEntity userEntity);
 
     List<SysDemanUserEntity> selectdata(Long palnItemId);
 

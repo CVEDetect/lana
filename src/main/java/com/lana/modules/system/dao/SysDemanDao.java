@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (SysDeman)表数据库访问层
@@ -25,6 +26,6 @@ public interface SysDemanDao extends BaseMapper<SysDeman> {
 
     void userForDeman(@Param("demendId")Integer demendId, @Param("userList")List<Integer> userList,@Param("userName") String userName);
 
-    IPage<SysDemanVO> getPageData(Page<HashMap<String, Object>> page, SysUserEntity userEntit);
+    IPage<SysDemanVO> getPageData(@Param("page") Page<HashMap<String, Object>> page, @Param("userEntit") SysUserEntity userEntit, @Param("params")Map<String, String> params);
 }
 

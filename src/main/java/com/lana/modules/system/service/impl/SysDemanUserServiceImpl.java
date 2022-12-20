@@ -47,9 +47,9 @@ public class SysDemanUserServiceImpl extends ServiceImpl<SysDemanUserDao, SysDem
     }
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params, SysUserEntity userEntit) {
-        Page<HashMap<String,Object>> page = new Page<>(Integer.parseInt(params.get("page").toString()), Integer.parseInt(params.get("limit").toString()));
-        IPage<TaskUserDataVO> pages = sysDemanUserDao.getPageData(page,userEntit);
+    public PageUtils queryPage(Map<String, String> params, SysUserEntity userEntit) {
+        Page<HashMap<String,Object>> page = new Page<>(Integer.parseInt(params.get("page")), Integer.parseInt(params.get("limit")));
+        IPage<TaskUserDataVO> pages = sysDemanUserDao.getPageData(page,userEntit,params);
         return new PageUtils(pages);
     }
 

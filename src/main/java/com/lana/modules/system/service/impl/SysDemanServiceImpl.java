@@ -40,9 +40,9 @@ public class SysDemanServiceImpl extends ServiceImpl<SysDemanDao, SysDeman> impl
     private SysDemanDao sysDemanDao;
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params,SysUserEntity userEntit) {
+    public PageUtils queryPage(Map<String, String> params,SysUserEntity userEntit) {
         Page<HashMap<String,Object>> page = new Page<>(Integer.parseInt(params.get("page").toString()), Integer.parseInt(params.get("limit").toString()));
-        IPage<SysDemanVO> pages = sysDemanDao.getPageData(page,userEntit);
+        IPage<SysDemanVO> pages = sysDemanDao.getPageData(page,userEntit,params);
         return new PageUtils(page);
     }
 

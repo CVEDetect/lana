@@ -19,7 +19,7 @@ import java.util.Map;
 public interface SysDemanService extends IService<SysDeman> {
 
 
-    PageUtils queryPage(Map<String, Object> params, SysUserEntity userEntit);
+    PageUtils queryPage(Map<String, String> params, SysUserEntity userEntit);
 
     void userForDeman(UserForDemdDTO userForDemdDTO);
 

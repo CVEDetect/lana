@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -24,7 +25,7 @@ public interface SysDemanUserDao extends BaseMapper<SysDemanUserEntity> {
 
     List<HashMap<String, Object>> getAllOver(String demanId);
 
-    IPage<TaskUserDataVO> getPageData(@Param("page") Page<HashMap<String, Object>> page, @Param("userEntit") SysUserEntity userEntit);
+    IPage<TaskUserDataVO> getPageData(@Param("page") Page<HashMap<String, Object>> page, @Param("userEntit") SysUserEntity userEntit,@Param("params") Map<String, String> params);
 
     void deleteUserTask(Long itemDd);
 

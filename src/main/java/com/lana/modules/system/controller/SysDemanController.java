@@ -53,7 +53,7 @@ public class SysDemanController  extends  AbstractController{
      */
     @ApiOperation(value = "需求列表", notes = "需求列表")
     @GetMapping("/getDeman")
-    public Result list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, String> params) {
 
         PageUtils page = sysDemanService.queryPage(params,getUser());
 

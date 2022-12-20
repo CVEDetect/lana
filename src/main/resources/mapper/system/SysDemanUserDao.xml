@@ -65,7 +65,12 @@
         FROM sys_deman_user n
                  INNER JOIN  paln_item p ON  p.id = n.paln_item_id
                  INNER JOIN  sys_deman d ON  d.id = p.plan_deman_id
-        WHERE n.user_id = #{userEntit.userId}
+        <where>
+            <if test="params.taskStart !=null and params.taskStart != ''">
+                and n.user_opinion = #{params.taskStart}
+            </if>
+        and n.user_id = #{userEntit.userId}
+        </where>
     </select>
     <select id="selectdata" resultType="com.lana.modules.system.pojo.entity.SysDemanUserEntity">
         SELECT * from sys_deman_user where paln_item_id = #{palnItemId}
