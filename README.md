@@ -51,7 +51,7 @@ minio，并且创建data桶，以及设置好权限
 ![img_2.png](src/main/resources/imgs/img_2.png)
 
 ![img_3.png](src/main/resources/imgs/img_3.png)
-![img_4.png](src/assets/img_4.png)
+![img_4.png](src/main/resources/imgs/img_4.png)
 
 ![img_5.png](src/main/resources/imgs/img_5.png)
 ![img_6.png](src/main/resources/imgs/img_6.png)
