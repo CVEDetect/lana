@@ -9,7 +9,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"org.jeecg.modules.jmreport","com.lana"})
 public class LanaBootApplication {
 
     public static void main(String[] args) throws UnknownHostException {
@@ -19,6 +19,7 @@ public class LanaBootApplication {
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application Lana-Boot is running!  :\n\t" +
                 "Swagger文档: \thttp://" + ip + ":" + port + "/lana-boot" + "/doc.html\n\t" +
+                "jmreport地址: \thttp://" + ip + ":" + port + "/lana-boot" + "/jmreport/list\n\t" +
                 "让我们开始甜蜜又苦涩的写bug环节吧！！！\n" +
                 "----------------------------------------------------------");
     }
