@@ -1,4 +1,10 @@
-
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
 
 package com.lana.config;
 
@@ -10,8 +16,8 @@ import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * @auther liuyulet
- * @date 2022/9/8 23:51
+ * Redis配置
+ *
  */
 @Configuration
 public class RedisConfig {
