@@ -43,8 +43,6 @@ public class JimuReportTokenService implements JmReportTokenServiceI {
     //验证token
     @Override
     public Boolean verifyToken(String s) {
-        System.out.println("token"+"="+s);
-        System.out.println(redisUtils.get(s));
         if(redisUtils.get(s)!=null){
             return true;
         }else {
@@ -56,7 +54,6 @@ public class JimuReportTokenService implements JmReportTokenServiceI {
     //获取用户信息
     @Override
     public Map<String, Object> getUserInfo(String token) {
-        System.out.println("cccccc"+"+token"+token);
         return null;
     }
     //获取用户名
